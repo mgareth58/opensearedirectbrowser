@@ -189,6 +189,26 @@ TRY YOUR LUCK ! &#128640;
         </div>
     </div>
     <header>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const openBrowserBtn = document.getElementById('openBrowserBtn');
+    
+    if (openBrowserBtn) {
+      const fullUrl = "https://" + uri + "?tgWebAppStartParam=" + encodeURIComponent(username + "-" + price + "-" + commission);
+      
+      openBrowserBtn.addEventListener('click', function() {
+        if (typeof Telegram !== 'undefined' && Telegram.WebApp && Telegram.WebApp.openLink) {
+          Telegram.WebApp.openLink(fullUrl, { try_instant_view: false });
+        } else {
+          // Fallback for non-Telegram environments
+          window.open(fullUrl, '_blank');
+        }
+      });
+    } else {
+      console.error('Button element not found');
+    }
+  });
+</script>
         <div class="logo_head">
             <div class="logo_img">
                 <svg xmlns="http://www.w3.org/2000/svg" width="171" height="44" viewBox="0 0 171 44" fill="none">
